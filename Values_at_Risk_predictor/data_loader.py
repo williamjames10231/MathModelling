@@ -76,6 +76,11 @@ class DataLoader:
     def vitals(
             self
     )-> Any:
-        vitals = self.data_treated_scaled.summary()
+        vitals = (
+            self.data_treated_scaled.mean(),
+            self.data_treated_scaled.std(), 
+            self.data_treated_scaled.skew(), 
+            self.data_treated_scaled.kurtosis()
+        )
 
         return vitals

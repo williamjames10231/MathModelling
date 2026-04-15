@@ -5,6 +5,7 @@ from arch import arch_model
 import pandas as pd
 from matplotlib import pyplot as plt
 from pathlib import Path
+import seaborn as sns
 
 class GARCHEngine:
     def __init__(
@@ -65,4 +66,17 @@ class GARCHEngine:
             self
     ) -> Any:
        return self.garch_results.summary()
+
+    def visuals_extentsion(
+            self
+    ) -> None:
+        axes = plt.subplot()
+
+        sns.histplot(self.std_residual, kde=True, ax=axes, stat='density', color='lightcoral')
+        axes.set_title('Distribution of Standardized Residuals')
+        axes.set_xlabel('Standardized Residuals')
+        axes.set_ylabel('Density')
+
+        plt.tight_layout()
+        plt.show()      
 

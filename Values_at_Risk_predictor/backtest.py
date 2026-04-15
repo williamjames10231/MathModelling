@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.stats import chi2
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 class Backtest:
@@ -42,4 +43,33 @@ class Backtest:
         plt.title('Philippine Index: Daily 5% VaR (Univariate GARCH with skewed‑t)')
         plt.ylabel('Loss / VaR')
         plt.grid(True)
+        plt.show()
+
+    def visuals_extension(
+            self
+    ) -> None:
+        plt.figure(figsize=(12, 6))
+        plt.plot(self.aligned_returns.index, self.actual_loss, label='Actual loss', alpha=0.5)
+        plt.plot(self.aligned_returns.index, self.aligned_VaR, label='5% VaR', color='red')
+
+        violations_dates = self.violations[self.violations == 1].index
+        violations_losses = self.actual_loss.loc[violations_dates]
+
+        plt.scatter(violations_dates, violations_losses, color='darkgreen', marker='x', s=100, zorder=5, label='VaR Violations')
+        plt.fill_between(self.aligned_returns.index, 0, self.aligned_VaR, alpha=0.2, color='red')
+        plt.legend()
+        plt.title('Philippine Index: Daily 5% VaR with Highlighted Violations')
+        plt.ylabel('Loss / VaR')
+        plt.grid(True)
+        plt.show()
+    
+    def visualize_returns(
+            self
+    ) -> None:
+        axes = plt.subplot()
+        sns.histplot(self.aligned_returns, kde=True, ax=axes, stat='density', color='skyblue')
+        axes.set_title('Distribution of Daily Returns')
+        axes.set_xlabel('Returns')
+        axes.set_ylabel('Density')
+        plt.tight_layout()
         plt.show()

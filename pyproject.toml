@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+ 
+[project]
+name = "math-modelling"
+version = "0.1.0"
+description = "Mathematical modelling tools including a Value at Risk predictor"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "williamjames10231" }
+]
+keywords = ["math", "modelling", "value-at-risk", "finance", "statistics"]
+ 
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.1",
+    "scipy>=1.11",
+    "matplotlib>=3.8",
+    "seaborn>=0.13",
+    "yfinance>=0.2",
+    "scikit-learn>=1.3",
+    "statsmodels>=0.14",
+    "jupyterlab>=4.0",
+    "ipykernel>=6.0",
+    "jupyter>=1.1.1",
+    "arch>=8.0.0"
+]
+ 
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "black>=23.0",
+    "ruff>=0.1",
+    "mypy>=1.5",
+]
+ 
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["Values_at_Risk_predictor*", "notebook*"]
+ 
+[tool.black]
+line-length = 88
+target-version = ["py310", "py311", "py312"]
+ 
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
+ 
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=Values_at_Risk_predictor --cov-report=term-missing"
+ 

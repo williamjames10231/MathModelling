@@ -22,6 +22,7 @@ The project bridges theoretical financial mathematics with practical implementat
 - **Modular Codebase** — Clean separation of data loading, model logic, and backtesting for easy extension.
 
 ## 📂 Project Structure
+```text
 MathModelling/
 ├── Study/ # Academic paper and supporting materials
 │ ├── Draft of Exposition Paper.pdf # Final write‑up
@@ -55,17 +56,20 @@ MathModelling/
    git clone https://github.com/williamjames10231/MathModelling.git
    cd MathModelling
 
-### Seting up Virtual Environment
-python -m venv venv
-source venv/bin/activate      # On Windows: venv\Scripts\activate
+2. **Seting up Virtual Environment**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate      # On Windows: venv\Scripts\activate
 
-### Installing the Dependencies
-pip install pip-tools
-pip-compile pyproject.toml
-pip install -r requirements.txt
+3. **Installing the Dependencies**
+   ```bash
+   pip install pip-tools
+   pip-compile pyproject.toml
+   pip install -r requirements.txt
 
-### Run the analysis
-jupyter notebook notebook/main.ipynb
+4. **Run the analysis***
+   ```bash
+   jupyter notebook notebook/main.ipynb
 
 ## 📊 Key results  
 The GARCH(1,1) model successfully captures volatility clustering and produces accurate VaR forecasts. Backtesting confirms that the predicted VaR violations align with expected frequencies, validating the model’s reliability for risk management. Further details
